@@ -5,7 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui\
-				 network
+            network\
+            opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,16 +14,18 @@ TARGET = desktop-client
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES  += main.cpp\
+            mainwindow.cpp\
+            scene3D.cpp
 
-HEADERS  += mainwindow.hpp
+HEADERS  += mainwindow.hpp\
+            scene3D.h
 
 FORMS    += mainwindow.ui
 
 CONFIG += qwt
 
 
-INCLUDEPATH += /usr/local/qwt-6.0.3-svn/include/
+INCLUDEPATH += /usr/include/qwt
 
-LIBS += -lqwt
+LIBS += -lqwt -lGLU

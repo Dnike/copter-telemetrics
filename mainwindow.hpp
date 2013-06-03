@@ -7,7 +7,8 @@
 
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
-
+#include <QQuaternion>
+#include "scene3D.h"
 
 
 namespace Ui {
@@ -17,11 +18,12 @@ namespace Ui {
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
-	
+
 public:
 	explicit MainWindow(QWidget *parent = 0);
 	~MainWindow();
-	
+	Scene3D* scene;
+
 	enum ControlCommand {
 		PowerUp1 = 0,
 		PowerUp2,
@@ -33,7 +35,7 @@ public:
 		StartupAdjust,
 		NUM_COMMANDS
 	};
-	
+
 public slots:
 	void onTcpRead();
 	void onControlRead();
@@ -41,11 +43,11 @@ public slots:
 	void disconnectFromServer();
 
 	void updatePlot(double accelX, double accelY, double gyroX, double gyroY);
-	
+
 	void onPowerChange(int val);
 	void handleControlButton();
 	void controlSend(MainWindow::ControlCommand command);
-	
+
 private:
 	Ui::MainWindow *ui;
 	QTcpSocket* m_tcpSocket;
@@ -56,7 +58,7 @@ private:
 	QwtPlotCurve* m_accelXCurve, *m_accelYCurve, *m_gyroXCurve, *m_gyroYCurve;
 	int m_counter;
 	int m_power;
-    
+
     QGraphicsScene* xScene;
     QGraphicsScene* yScene;
 };
