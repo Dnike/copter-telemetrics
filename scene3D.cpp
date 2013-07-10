@@ -78,8 +78,8 @@ void Scene3D::paintGL()
 	glColor3f(1, 0.5, 0.5);
 	drawLine(lambdaAccel.vector());
 
-    tilt = getAngles(lambda);
-    tiltAccel = getAngles(lambdaAccel);
+    tilt = getAngles(lambda)*180/M_PI;
+    tiltAccel = getAngles(lambdaAccel)*180/M_PI;
 
 
 	glLoadIdentity();
@@ -97,11 +97,11 @@ void Scene3D::PrintAngles(QVector3D t, double x, double y)
     QFont font;
     font.setPointSize(15);
 
-	sprintf(str,"Roll:   %lf", t.x()*180/M_PI);
+	sprintf(str,"Roll:   %lf", t.x());
     renderText(x, y, 0.0, str, font);
-	sprintf(str,"Pitch: %lf", t.y()*180/M_PI);
+	sprintf(str,"Pitch: %lf", t.y());
     renderText(x, y-0.08, 0.0, str, font);
-	sprintf(str,"Yaw:   %lf", t.z()*180/M_PI);
+	sprintf(str,"Yaw:   %lf", t.z());
     renderText(x, y-0.16, 0.0, str, font);
 }
 
